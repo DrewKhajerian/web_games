@@ -1,0 +1,18 @@
+body {
+	background-color: blue;
+}
+
+body #board{
+	background-color: light blue;
+	margin: auto;
+}
+
+td {
+	height: 50px;
+	width: 80px;
+	border: solid red 2px;
+	border-radius: 5px;
+	font-size: 30px;
+	text-align: center;
+	color: red;
+}

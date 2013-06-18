@@ -7,6 +7,8 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
  </head>
  <body>
+
+ 	<h1>TIC TAC TOE</h1>
  
   <table id="board">
   	<tr>
@@ -26,7 +28,7 @@
   	</tr>
   </table>
 
-  <form><input type=button value="Play Again?" onClick="window.location.reload()"></form>
+  <form><input type=button style="visibility:hidden;" value="Play Again?" onClick="window.location.reload()"></form>
 
 
 	<!-- start jQuery -->
@@ -36,8 +38,9 @@
 	$(document).ready(function() {
 		$('td').click(function() {
 			var move = determinePlayer;
-			var value = $(this).text();
-			console.log(value);
+			var button = $('input');
+			// var value = $(this).text();
+			// console.log(value);
 			if (($(this).text() != "X") && ($(this).text() != "O")) {
 				$(this).text(move);
 				moveCounter++;
@@ -45,13 +48,17 @@
 			else 
 				alert('Invalid move!');
 			win()
+			if (win()){
+				button.click()
+			}
 			tie()
 		});
 	});
 	
 	<!-- start JavaScript -->
 	var moveCounter = 0;
-	var combo = [['#1','#2','#3'],['#4','#5','#6'],['#7','#8','#9'],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+	var combo = [['#1','#2','#3'],['#4','#5','#6'],['#7','#8','#9'],['#1','#4','#7'],['#2','#5','#8'],['#3','#6','#9'],['#1','#5','#9'],['#3','#5','#7']];
+	var winCounter = 0;
 
 	function determinePlayer() {
 		if (moveCounter % 2 == 0)
@@ -61,17 +68,30 @@
 	}
 
 	function win() {
-		// if ((($('#1').text() == "X") && ($('#2').text() == "X") && ($('#3').text() == "X"))||
-		// 	(($('#4').text() == "X") && ($('#5').text() == "X") && ($('#6').text() == "X")))
-		// 	// ($('#7').text() == "X" && $('#8').text() == "X" && $('#9').text() == "X")||
-		// 	// ($('#1').text() == "X" && $('#4').text() == "X" && $('#7').text() == "X")||
-		// 	// ($('#2').text() == "X" && $('#5').text() == "X" && $('#8').text() == "X")||
-		// 	// ($('#3').text() == "X" && $('#6').text() == "X" && $('#9').text() == "X")||
-		// 	// ($('#1').text() == "X" && $('#5').text() == "X" && $('#9').text() == "X"||
-		// 	// ($('#3').text() == "X" && $('#5').text() == "X" && $('#7').text() == "X"))
-		// 		alert("X wins!");
-
+		for (i=0; i<combo.length; i++) {
+			// for (j=0; j<3; j++) {
+			// 	if ($(combo[i][j]).text()=="X"){
+			// 		winCounter++;
+			// 		if (winCounter == 3);
+			// 			alert("X Wins!");
+			// 	} 
+			// 	else if ($(combo[i][j]).text()=="O") {
+			// 		winCounter++;
+			// 		if (winCounter == 3);
+			// 			alert("O Wins!");
+			// 	}
+			// }
+			if (($(combo[i][0]).text()=="O")&&($(combo[i][1]).text()=="O")&&($(combo[i][2]).text()=="O")){
+				alert('O wins!');
+				return true;
+			}
+			else if (($(combo[i][0]).text()=="X")&&($(combo[i][1]).text()=="X")&&($(combo[i][2]).text()=="X")){
+				alert('X wins!');
+				return true;
+			}
+		}		
 	}
+		
 
 	function tie() {
 		if (moveCounter == 9)

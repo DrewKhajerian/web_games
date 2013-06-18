@@ -33,24 +33,35 @@
 
 	$(document).ready(function() {
 		$('#board tr td').find('p').click(function() {
-			$(this).text('x');
-			// $(this).on('click',determineMove);
-			// $(this)
+			var move = determineMove;
+			$(this).text(move);
+			moveCounter++;
+			// $(this).on('click', );
 		});
 
 	});
 	
 	<!-- start JavaScript -->
-	var player1 = 'x';
+	var player1 = 'X';
 	var player2 = 'O';
 	var moveCounter = 0;
 
 	function determineMove() {
-
-
+		if (moveCounter % 2 == 0)
+			return player1;
+		else 
+			return player2;
 	}
 
 	function validMove () {
+
+	}
+
+	function win () {
+
+	}
+
+	function tie () {
 
 	}
 	// var counterButton = document.getElementById('counter');

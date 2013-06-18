@@ -9,6 +9,7 @@
  <body>
 
  	<h1>TIC TAC TOE</h1>
+ 	<p>Click the board to make a move</p>
  
   <table id="board">
   	<tr>
@@ -28,19 +29,16 @@
   	</tr>
   </table>
 
-  <form><input type=button style="visibility:hidden;" value="Play Again?" onClick="window.location.reload()"></form>
+  <form><input type=button value="Play Again?" onClick="window.location.reload()"></form>
 
 
 	<!-- start jQuery -->
 	<script>
-	alert('Click the numbers to make your move');
 
 	$(document).ready(function() {
 		$('td').click(function() {
 			var move = determinePlayer;
 			var button = $('input');
-			// var value = $(this).text();
-			// console.log(value);
 			if (($(this).text() != "X") && ($(this).text() != "O")) {
 				$(this).text(move);
 				moveCounter++;
@@ -48,9 +46,9 @@
 			else 
 				alert('Invalid move!');
 			win()
-			if (win()){
-				button.click()
-			}
+			// if (win()){
+			// 	button.click()
+			// }
 			tie()
 		});
 	});
@@ -69,6 +67,14 @@
 
 	function win() {
 		for (i=0; i<combo.length; i++) {
+			if (($(combo[i][0]).text()=="O")&&($(combo[i][1]).text()=="O")&&($(combo[i][2]).text()=="O")){
+				$('p').text('O wins!');
+				return true;
+			}
+			else if (($(combo[i][0]).text()=="X")&&($(combo[i][1]).text()=="X")&&($(combo[i][2]).text()=="X")){
+				$('p').text('X wins!');
+				return true;
+			}
 			// for (j=0; j<3; j++) {
 			// 	if ($(combo[i][j]).text()=="X"){
 			// 		winCounter++;
@@ -81,14 +87,6 @@
 			// 			alert("O Wins!");
 			// 	}
 			// }
-			if (($(combo[i][0]).text()=="O")&&($(combo[i][1]).text()=="O")&&($(combo[i][2]).text()=="O")){
-				alert('O wins!');
-				return true;
-			}
-			else if (($(combo[i][0]).text()=="X")&&($(combo[i][1]).text()=="X")&&($(combo[i][2]).text()=="X")){
-				alert('X wins!');
-				return true;
-			}
 		}		
 	}
 		

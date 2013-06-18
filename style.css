@@ -8,11 +8,16 @@ body #board{
 }
 
 td {
-	height: 50px;
-	width: 80px;
+	height: 80px;
+	width: 85px;
 	border: solid red 2px;
 	border-radius: 5px;
-	font-size: 30px;
+	font-size: 35px;
 	text-align: center;
 	color: red;
+	padding: 2px;
+}
+
+body input {
+	margin: auto;
 }

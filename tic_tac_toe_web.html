@@ -10,21 +10,23 @@
  
   <table id="board">
   	<tr>
-  		<td><p>1</p></td>
-  		<td><p>2</p></td>
-  		<td><p>3</p></td>
+  		<td id='1'>1</td>
+  		<td id='2'>2</td>
+  		<td id='3'>3</td>
   	</tr>
   	<tr>
-  		<td><p>4</p></td>
-  		<td><p>5</p></td>
-  		<td><p>6</p></td>
+  		<td id='4'>4</td>
+  		<td id='5'>5</td>
+  		<td id='6'>6</td>
   	</tr>
   	<tr>
-  		<td><p>7</p></td>
-  		<td><p>8</p></td>
-  		<td><p>9</p></td>
+  		<td id='7'>7</td>
+  		<td id='8'>8</td>
+  		<td id='9'>9</td>
   	</tr>
   </table>
+
+  <form><input type=button value="Play Again?" onClick="window.location.reload()"></form>
 
 
 	<!-- start jQuery -->
@@ -32,7 +34,7 @@
 	alert('Click the numbers to make your move');
 
 	$(document).ready(function() {
-		$('#board tr td').find('p').click(function() {
+		$('td').click(function() {
 			var move = determinePlayer;
 			var value = $(this).text();
 			console.log(value);
@@ -49,6 +51,7 @@
 	
 	<!-- start JavaScript -->
 	var moveCounter = 0;
+	var combo = [['#1','#2','#3'],['#4','#5','#6'],['#7','#8','#9'],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 
 	function determinePlayer() {
 		if (moveCounter % 2 == 0)
@@ -57,12 +60,16 @@
 			return "O";
 	}
 
-	// function validMove() {
-	// 	if (getElementById('p').value == "X" || "O")
-	// 		return false
-	// }
-
 	function win() {
+		// if ((($('#1').text() == "X") && ($('#2').text() == "X") && ($('#3').text() == "X"))||
+		// 	(($('#4').text() == "X") && ($('#5').text() == "X") && ($('#6').text() == "X")))
+		// 	// ($('#7').text() == "X" && $('#8').text() == "X" && $('#9').text() == "X")||
+		// 	// ($('#1').text() == "X" && $('#4').text() == "X" && $('#7').text() == "X")||
+		// 	// ($('#2').text() == "X" && $('#5').text() == "X" && $('#8').text() == "X")||
+		// 	// ($('#3').text() == "X" && $('#6').text() == "X" && $('#9').text() == "X")||
+		// 	// ($('#1').text() == "X" && $('#5').text() == "X" && $('#9').text() == "X"||
+		// 	// ($('#3').text() == "X" && $('#5').text() == "X" && $('#7').text() == "X"))
+		// 		alert("X wins!");
 
 	}
 
@@ -70,13 +77,6 @@
 		if (moveCounter == 9)
 			alert('Tie game!')
 	}
-	// var counterButton = document.getElementById('counter');
-	// var board = document.getElementById('board');
-	// function onButtonClick() {
- //    counterButton.innerHTML = parseInt(counterButton.innerHTML) + 1;
-	// }
-	// counterButton.addEventListener('click', onButtonClick, false);
-		
 	
 	</script>
  </body>

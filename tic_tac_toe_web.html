@@ -33,36 +33,42 @@
 
 	$(document).ready(function() {
 		$('#board tr td').find('p').click(function() {
-			var move = determineMove;
-			$(this).text(move);
-			moveCounter++;
-			// $(this).on('click', );
+			var move = determinePlayer;
+			var value = $(this).text();
+			console.log(value);
+			if (($(this).text() != "X") && ($(this).text() != "O")) {
+				$(this).text(move);
+				moveCounter++;
+			} 
+			else 
+				alert('Invalid move!');
+			win()
+			tie()
 		});
-
 	});
 	
 	<!-- start JavaScript -->
-	var player1 = 'X';
-	var player2 = 'O';
 	var moveCounter = 0;
 
-	function determineMove() {
+	function determinePlayer() {
 		if (moveCounter % 2 == 0)
-			return player1;
+			return "X";
 		else 
-			return player2;
+			return "O";
 	}
 
-	function validMove () {
+	// function validMove() {
+	// 	if (getElementById('p').value == "X" || "O")
+	// 		return false
+	// }
+
+	function win() {
 
 	}
 
-	function win () {
-
-	}
-
-	function tie () {
-
+	function tie() {
+		if (moveCounter == 9)
+			alert('Tie game!')
 	}
 	// var counterButton = document.getElementById('counter');
 	// var board = document.getElementById('board');
